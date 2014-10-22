@@ -13,11 +13,14 @@ This includes features like:
 - Android Compat Theme
 - DrawerLayout
 
-
-#Screenshots
+#Preview
+##Screenshots
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-LollipopShowcase/master/DEV/screenshots/screenshot_1_small.jpg).
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-LollipopShowcase/master/DEV/screenshots/screenshot_2_small.jpg)
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-LollipopShowcase/master/DEV/screenshots/screenshot_3_small.jpg)
+
+##Video
+You can find a short video demo here: http://youtu.be/ebdFd7-E7fM
 
 
 ##Warning
