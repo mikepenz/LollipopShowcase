@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+                                    android:layout_width="match_parent"
+                                    android:stateListAnimator="@anim/fab_anim"
+                                    android:layout_margin="5dp"
+                                    android:clickable="true"
+                                    android:layout_height="wrap_content">
+
+    <LinearLayout android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="?android:selectableItemBackground">
+        <ImageView android:id="@+id/appIcon"
+                   android:transitionName="appIcon"
+                   android:layout_margin="8dp"
+                   android:layout_width="56dp"
+                   android:layout_height="56dp"/>
+        <LinearLayout android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="10dp"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:maxLines="1"
+                android:textColor="@android:color/black"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#444"/>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="8dp"
+                android:textSize="16sp"
+                android:maxLines="20"
+                android:textColor="@android:color/black">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lollipop Showcase</string>
+
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="activity_detail_title">DetailActivity</string>
+
+    <string name="drawer_switch">SwitchSample</string>
+    <string name="drawer_opensource">Open Source</string>
+
+
+    <string name="dialog_nointernet">No internet connection!</string>
+    <string name="dialog_uploading">Uploading&#8230;</string>
+    <string name="dialog_processinganduploading">Processing and uploading your applications. Please be patient!</string>
+</resources>

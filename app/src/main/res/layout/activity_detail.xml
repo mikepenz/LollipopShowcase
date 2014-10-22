@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MyActivity"
+    >
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:transitionName="actionBar"/>
+
+    <!--
+    <RelativeLayout
+        android:id="@+id/holder_view"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:transitionName="actionBar"
+        android:background="?android:colorPrimary">
+        <ImageView android:id="@+id/appIcon"
+                   android:transitionName="appIcon"
+                   android:layout_marginTop="8dp"
+                   android:layout_marginBottom="8dp"
+                   android:layout_width="72dp"
+                   android:layout_height="72dp"/>
+    </RelativeLayout>
+    -->
+
+    <ImageButton
+        android:id="@+id/fab_button"
+        android:layout_width="@dimen/fab_size"
+        android:transitionName="fab"
+        android:layout_height="@dimen/fab_size"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:background="@drawable/ripple_round"
+        android:stateListAnimator="@anim/fab_anim"
+        android:elevation="8dp"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_upload"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_detail_vertical_margin"
+        android:clipToPadding="false"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/row_container"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/row_name"
+                layout="@layout/row_detailiconview"/>
+
+            <include
+                android:id="@+id/row_package_name"
+                layout="@layout/row_detailview"/>
+
+            <include
+                android:id="@+id/row_activity"
+                layout="@layout/row_detailview"/>
+
+            <include
+                android:id="@+id/row_component_info"
+                layout="@layout/row_detailview"/>
+
+            <include
+                android:id="@+id/row_version"
+                layout="@layout/row_detailview"/>
+
+            <include
+                android:id="@+id/row_moments"
+                layout="@layout/row_detailview"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
