@@ -4,11 +4,11 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.0.2"
     defaultConfig {
-        applicationId 'com.mikepenz.applicationreader'
+        applicationId 'com.mikepenz.lollipopshowcase'
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 200
-        versionName "2.0.0"
+        versionCode 201
+        versionName "2.0.1"
     }
 
     buildTypes {
