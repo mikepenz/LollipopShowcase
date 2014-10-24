@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.0.1"
+    buildToolsVersion "21.0.2"
     defaultConfig {
         applicationId 'com.mikepenz.applicationreader'
         minSdkVersion 16
@@ -31,5 +31,5 @@ dependencies {
     compile 'de.keyboardsurfer.android.widget:crouton:1.+@aar'
     compile 'com.joanzapata.android:android-iconify:1.0.6'
 
-    compile 'com.tundem.aboutlibraries:library:3.0.4@aar'
+    compile 'com.tundem.aboutlibraries:library:4.0.1@aar'
 }

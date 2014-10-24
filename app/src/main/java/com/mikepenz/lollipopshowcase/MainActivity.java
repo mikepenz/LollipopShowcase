@@ -105,13 +105,8 @@ public class MainActivity extends ActionBarActivity {
                 //Set a title (OPTIONAL)
                 i.putExtra(Libs.BUNDLE_TITLE, getString(R.string.drawer_opensource));
 
-
                 //Pass your theme (OPTIONAL)
-                i.putExtra(Libs.BUNDLE_THEME, R.style.AppThemeAboutLibraries);
-                //Pass a custom accent color (OPTIONAL)
-                i.putExtra(Libs.BUNDLE_ACCENT_COLOR, "#536dfe");
-                //Pass the information if it should use the Translucent decor (OPTIONAL) -> requires ACCENT_COLOR
-                i.putExtra(Libs.BUNDLE_TRANSLUCENT_DECOR, true);
+                i.putExtra(Libs.BUNDLE_THEME, R.style.AboutTheme);
 
                 //start the activity
                 startActivity(i);
