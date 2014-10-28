@@ -38,16 +38,20 @@
             android:clickable="true"
             android:orientation="vertical">
 
-            <Switch android:layout_width="match_parent"
-                    android:layout_height="@dimen/drawer_primary"
-                    android:id="@+id/drawer_autoupload"
-                    android:text="@string/drawer_switch"
-                    android:textSize="@dimen/drawer_primary_text"
-                    android:textStyle="normal"
-                    android:textColor="@color/text"
-                    android:gravity="center_vertical"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="@dimen/drawer_primary"
+                          android:background="@drawable/button_rect_list_normal">
+                <Switch android:layout_width="match_parent"
+                        android:layout_height="@dimen/drawer_primary"
+                        android:id="@+id/drawer_autoupload"
+                        android:text="@string/drawer_switch"
+                        android:textSize="@dimen/drawer_primary_text"
+                        android:textStyle="normal"
+                        android:textColor="@color/text"
+                        android:gravity="center_vertical"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"/>
+            </LinearLayout>
 
             <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/dividers"/>
             <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
