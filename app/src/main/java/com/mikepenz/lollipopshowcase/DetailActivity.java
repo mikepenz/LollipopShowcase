@@ -6,6 +6,7 @@ import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -58,6 +59,7 @@ public class DetailActivity extends ActionBarActivity {
         // Fab Button
         View fabButton = findViewById(R.id.fab_button);
         fabButton.setOnClickListener(fabClickListener);
+        Utils.configureFab(fabButton);
 
         //getWindow().getEnterTransition().removeListener(this);
 
@@ -154,7 +156,11 @@ public class DetailActivity extends ActionBarActivity {
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    finishAfterTransition();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        finishAfterTransition();
+                    } else {
+                        finish();
+                    }
                 }
 
                 @Override
