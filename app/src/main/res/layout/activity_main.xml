@@ -11,23 +11,6 @@
         android:elevation="4dp"
         android:transitionName="actionBar"/>
 
-    <ImageButton
-        android:id="@+id/fab_button"
-        android:transitionName="fab"
-        android:layout_width="@dimen/fab_size"
-        android:layout_height="@dimen/fab_size"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:background="@drawable/ripple_round"
-        android:stateListAnimator="@anim/fab_anim"
-        android:elevation="8dp"
-        android:padding="8dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_upload"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginTop="-28dp"
-        android:layout_alignParentEnd="true"
-        />
-
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer"
         android:layout_below="@id/toolbar"
@@ -48,43 +31,41 @@
 
         <LinearLayout
             android:id="@+id/drawerList"
-            android:layout_width="240dp"
+            android:layout_width="@dimen/drawer_width"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@color/list_background"
             android:clickable="true"
             android:orientation="vertical">
 
-            <Switch android:layout_width="match_parent" android:layout_height="60dp"
+            <Switch android:layout_width="match_parent"
+                    android:layout_height="@dimen/drawer_primary"
                     android:id="@+id/drawer_autoupload"
                     android:text="@string/drawer_switch"
-                    android:textSize="22sp"
+                    android:textSize="@dimen/drawer_primary_text"
                     android:textStyle="normal"
-                    android:textAppearance="?android:attr/textAppearanceListItem"
-                    android:background="@drawable/ripple_rect_list_normal"
-                    android:textColor="@color/list_item_title"
+                    android:textColor="@color/text"
                     android:gravity="center_vertical"
-                    android:minHeight="60dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"/>
 
-            <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/list_divider"/>
+            <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/dividers"/>
             <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
-            <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/list_divider"/>
+            <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/dividers"/>
 
             <RelativeLayout
-                android:stateListAnimator="@anim/fab_anim"
                 android:id="@+id/drawer_opensource"
                 android:clickable="true"
-                android:background="@drawable/ripple_rect_list_secondary"
+                android:background="@drawable/button_rect_list_secondary"
                 android:layout_width="match_parent"
-                android:layout_height="44dp">
+                android:layout_height="@dimen/drawer_secondary">
 
                 <ImageView
                     android:id="@+id/drawer_opensource_icon"
-                    android:layout_width="16dp"
+                    android:layout_width="@dimen/drawer_secondary_icon"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"/>
@@ -92,14 +73,15 @@
                 <TextView
                     android:id="@+id/drawer_opensource_title"
                     android:text="@string/drawer_opensource"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/drawer_secondary_text"
                     android:textStyle="normal"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_toEndOf="@id/drawer_opensource_icon"
+                    android:layout_toRightOf="@id/drawer_opensource_icon"
                     android:gravity="center_vertical"
                     android:minHeight="44dp"
-                    android:textColor="@color/list_item_title_secondary"/>
+                    android:textColor="@color/secondary"/>
 
             </RelativeLayout>
         </LinearLayout>
@@ -114,4 +96,22 @@
             android:divider="@color/list_divider"
             android:dividerHeight="1px"/>-->
     </android.support.v4.widget.DrawerLayout>
+
+    <ImageButton
+        android:id="@+id/fab_button"
+        android:transitionName="fab"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="-28dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_round"
+        android:stateListAnimator="@anim/fab_anim"
+        android:elevation="8dp"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_upload"/>
 </RelativeLayout>

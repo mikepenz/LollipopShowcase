@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-
                                     android:layout_width="match_parent"
-                                    android:stateListAnimator="@anim/fab_anim"
                                     android:layout_margin="5dp"
                                     android:clickable="true"
                                     android:layout_height="wrap_content">
 
-    <LinearLayout android:orientation="horizontal"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:background="?android:selectableItemBackground">
+    <LinearLayout
+        android:background="@drawable/button_rect_list_normal"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <ImageView android:id="@+id/appIcon"
                    android:transitionName="appIcon"
                    android:layout_margin="8dp"
@@ -19,7 +18,8 @@
                    android:layout_height="56dp"/>
         <LinearLayout android:orientation="vertical"
                       android:layout_width="match_parent"
-                      android:layout_height="wrap_content">
+                      android:layout_height="match_parent"
+                      android:gravity="center_vertical">
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
@@ -29,9 +29,9 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginEnd="10dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:maxLines="1"
-                android:textColor="@android:color/black"/>
+                android:textColor="@color/text"/>
 
             <View
                 android:layout_width="match_parent"
@@ -43,12 +43,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginEnd="8dp"
-                android:textSize="16sp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp"
                 android:maxLines="20"
-                android:textColor="@android:color/black">
+                android:textColor="@color/secondary">
             </TextView>
         </LinearLayout>
     </LinearLayout>

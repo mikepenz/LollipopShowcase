@@ -12,4 +12,11 @@
     <dimen name="button_press_elevation">4dp</dimen>
     <dimen name="navigation_drawer_width">240dp</dimen>
 
+    <!-- Drawer -->
+    <dimen name="drawer_primary">60dp</dimen>
+    <dimen name="drawer_primary_text">24sp</dimen>
+    <dimen name="drawer_secondary">44dp</dimen>
+    <dimen name="drawer_secondary_text">16sp</dimen>
+    <dimen name="drawer_secondary_icon">16dp</dimen>
+    <dimen name="drawer_width">240dp</dimen>
 </resources>

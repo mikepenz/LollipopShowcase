@@ -30,22 +30,6 @@
     </RelativeLayout>
     -->
 
-    <ImageButton
-        android:id="@+id/fab_button"
-        android:layout_width="@dimen/fab_size"
-        android:transitionName="fab"
-        android:layout_height="@dimen/fab_size"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:background="@drawable/ripple_round"
-        android:stateListAnimator="@anim/fab_anim"
-        android:elevation="8dp"
-        android:padding="8dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_upload"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"/>
-
     <ScrollView
         android:scrollbars="none"
         android:layout_width="match_parent"
@@ -90,4 +74,21 @@
         </LinearLayout>
     </ScrollView>
 
+
+    <ImageButton
+        android:id="@+id/fab_button"
+        android:layout_width="@dimen/fab_size"
+        android:transitionName="fab"
+        android:layout_height="@dimen/fab_size"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:background="@drawable/button_round"
+        android:stateListAnimator="@anim/fab_anim"
+        android:elevation="8dp"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_upload"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

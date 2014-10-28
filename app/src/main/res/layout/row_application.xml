@@ -2,10 +2,23 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:orientation="horizontal"
                                     android:layout_width="match_parent"
-                                    android:stateListAnimator="@anim/fab_anim"
                                     android:layout_margin="5dp"
                                     android:clickable="true"
                                     android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/countryName"
+        android:gravity="center_vertical"
+        android:paddingStart="80dp"
+        android:paddingLeft="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:textSize="24sp"
+        android:textColor="@color/text"
+        android:clickable="false"
+        android:background="@drawable/button_rect_list_normal"
+        />
 
     <ImageView
         android:transitionName="appIcon"
@@ -14,17 +27,7 @@
         android:layout_height="72dp"
         android:padding="4dp"
         android:scaleType="centerCrop"
-        />
-
-    <TextView
-        android:id="@+id/countryName"
-        android:background="?android:selectableItemBackground"
-        android:gravity="center_vertical"
-        android:paddingStart="80dp"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:textSize="24sp"
-        android:textColor="@android:color/black"
+        android:clickable="false"
         />
 
 </android.support.v7.widget.CardView>

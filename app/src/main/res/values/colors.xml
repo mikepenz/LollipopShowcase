@@ -4,17 +4,17 @@
     <!-- Theme colors -->
     <color name="theme_default_primary">#536dfe</color>
     <color name="theme_default_primary_dark">#3f51b5</color>
-    <color name="theme_window_background">#DEDEDE</color>
-    <color name="accent">#ff4081</color>
-    <color name="gray_row_color">#DEDEDE</color>
+    <color name="theme_accent">#ff4081</color>
+    <color name="theme_window_background">#DADADA</color>
+
+    <!-- general text colors -->
+    <color name="text">#212121</color>
+    <color name="secondary">#727272</color>
+    <color name="hint">#B8B8B8</color>
+    <color name="dividers">#DADADA</color>
 
     <!-- general colors for drawer -->
-    <color name="list_divider">#C3C3C3</color>
     <color name="list_background">#F2F2F2</color>
-    <!-- Generel list item colors -->
-    <color name="list_item_title">#ff010101</color>
-    <color name="list_item_title_secondary">#ff505050</color>
-    <color name="list_item_disabled">#ff8F8F8F</color>
     <!-- primary colors for drawer -->
     <color name="list_background_normal">#FCFCFC</color>
     <!-- secondary colors for drawer -->

@@ -1,0 +1,9 @@
+<resources>
+    <!-- Drawer -->
+    <dimen name="drawer_primary">80dp</dimen>
+    <dimen name="drawer_primary_text">26sp</dimen>
+    <dimen name="drawer_secondary">60dp</dimen>
+    <dimen name="drawer_secondary_text">20sp</dimen>
+    <dimen name="drawer_secondary_icon">22dp</dimen>
+    <dimen name="drawer_width">320dp</dimen>
+</resources>
