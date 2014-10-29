@@ -1,4 +1,17 @@
 apply plugin: 'com.android.application'
+apply from: '../../../signing.gradle'
+
+def appendVersionNameVersionCode(variant, defaultConfig) {
+    if (variant.zipAlign) {
+        def file = variant.outputFile
+        def fileName = file.name.replace(".apk", "-v" + defaultConfig.versionName + "-c" + defaultConfig.versionCode + ".apk")
+        variant.outputFile = new File(file.parent, fileName)
+    }
+
+    def file = variant.packageApplication.outputFile
+    def fileName = file.name.replace(".apk", "-v" + defaultConfig.versionName + "-c" + defaultConfig.versionCode + ".apk")
+    variant.packageApplication.outputFile = new File(file.parent, fileName)
+}
 
 android {
     compileSdkVersion 21
@@ -12,9 +25,20 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-DEBUG"
+            signingConfig signingConfigs.debug
             runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            signingConfig signingConfigs.release
+            zipAlign true
+            runProguard false
+        }
+
+        applicationVariants.all { variant ->
+            appendVersionNameVersionCode(variant, defaultConfig)
         }
     }
     productFlavors {
