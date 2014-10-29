@@ -14,6 +14,9 @@ This includes features like:
 - DrawerLayout
 
 #Preview
+##Demo
+Try it out now. It's on Google Play ;) https://play.google.com/store/apps/details?id=com.mikepenz.lollipopshowcase
+
 ##Screenshots
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-LollipopShowcase/master/DEV/screenshots/screenshot_1_small.jpg)
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-LollipopShowcase/master/DEV/screenshots/screenshot_2_small.jpg)
