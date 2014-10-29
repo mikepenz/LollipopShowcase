@@ -1,6 +1,6 @@
-#Android-LollipopShowcase
+#Android-LollipopShowcase [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--LollipopShowcase-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/1057)
 
-This is a simple showcase to show off some cool new stuff which is (new) in Android Lollipop. 
+This is a simple showcase to show off Androids all new Material Design and some other cool new stuff which is (new) in Android Lollipop.
 
 This includes features like:
 - Toolbar
