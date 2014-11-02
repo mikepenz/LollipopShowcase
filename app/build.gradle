@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
-apply from: '../../../signing.gradle'
+//wrap with try and catch so the build is working even if the signing stuff is missing
+try {
+    apply from: '../../../signing.gradle'
+} catch (ex) {
+}
+
 
 def appendVersionNameVersionCode(variant, defaultConfig) {
     if (variant.zipAlign) {
@@ -28,11 +33,17 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
-            signingConfig signingConfigs.debug
+            try {
+                signingConfig signingConfigs.debug
+            } catch (ex) {
+            }
             runProguard false
         }
         release {
-            signingConfig signingConfigs.release
+            try {
+                signingConfig signingConfigs.release
+            } catch (ex) {
+            }
             zipAlign true
             runProguard false
         }
