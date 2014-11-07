@@ -18,11 +18,9 @@ import android.widget.TextView;
 
 import com.mikepenz.lollipopshowcase.entity.AppInfo;
 import com.mikepenz.lollipopshowcase.util.UploadHelper;
+import com.nispok.snackbar.Snackbar;
 
 import java.util.Date;
-
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class DetailActivity extends ActionBarActivity {
 
@@ -134,8 +132,11 @@ public class DetailActivity extends ActionBarActivity {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("AppInfo", description);
                 clipboard.setPrimaryClip(clip);
-                Crouton.clearCroutonsForActivity(DetailActivity.this);
-                Crouton.showText(DetailActivity.this, "Copied " + title, Style.CONFIRM);
+
+                Snackbar.with(getApplicationContext()).dismiss();
+                Snackbar.with(getApplicationContext()) // context
+                        .text("Copied " + title) // text to display
+                        .show(DetailActivity.this);
             }
         });
     }

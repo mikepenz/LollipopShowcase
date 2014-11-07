@@ -6,12 +6,10 @@ import android.support.v7.app.ActionBarActivity;
 
 import com.mikepenz.lollipopshowcase.R;
 import com.mikepenz.lollipopshowcase.entity.AppInfo;
+import com.nispok.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 
 /**
  * Created by mikepenz on 18.10.14.
@@ -57,8 +55,7 @@ public class UploadHelper {
         protected void onPreExecute() {
             if (!Network.isAvailiable(act)) {
                 this.cancel(true);
-
-                Crouton.showText(act, R.string.dialog_nointernet, Style.ALERT);
+                Snackbar.with(act).text(act.getString(R.string.dialog_nointernet)).show(act);
             } else {
                 mProgressDialog.setTitle(R.string.dialog_uploading);
                 mProgressDialog.setMessage(act.getString(R.string.dialog_processinganduploading));
