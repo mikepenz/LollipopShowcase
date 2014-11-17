@@ -86,9 +86,8 @@
         android:background="@drawable/button_round"
         android:stateListAnimator="@anim/fab_anim"
         android:elevation="8dp"
-        android:padding="8dp"
+        android:padding="14dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_upload"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"/>
 </RelativeLayout>

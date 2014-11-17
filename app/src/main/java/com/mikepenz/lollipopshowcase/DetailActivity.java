@@ -6,18 +6,22 @@ import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mikepenz.lollipopshowcase.entity.AppInfo;
 import com.mikepenz.lollipopshowcase.util.UploadHelper;
+import com.mikpenz.iconics.IconicsDrawable;
+import com.mikpenz.iconics.typeface.FontAwesome;
 import com.nispok.snackbar.Snackbar;
 
 import java.util.Date;
@@ -55,7 +59,8 @@ public class DetailActivity extends ActionBarActivity {
         rowContainer = (LinearLayout) findViewById(R.id.row_container);
 
         // Fab Button
-        View fabButton = findViewById(R.id.fab_button);
+        ImageButton fabButton = (ImageButton) findViewById(R.id.fab_button);
+        fabButton.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_upload).color(Color.WHITE).actionBarSize());
         fabButton.setOnClickListener(fabClickListener);
         Utils.configureFab(fabButton);
 

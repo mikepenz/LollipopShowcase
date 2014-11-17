@@ -25,6 +25,14 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         this.mAct = act;
     }
 
+    public void clearApplications() {
+        int size = this.applications.size();
+        if (size > 0) {
+            this.applications.clear();
+            this.notifyItemRangeRemoved(0, size - 1);
+        }
+    }
+
     public void setApplications(List<AppInfo> applications) {
         this.applications = applications;
         this.notifyItemRangeInserted(0, applications.size() - 1);
