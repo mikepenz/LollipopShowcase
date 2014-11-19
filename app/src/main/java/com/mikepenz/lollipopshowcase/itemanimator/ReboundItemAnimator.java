@@ -1,6 +1,5 @@
 package com.mikepenz.lollipopshowcase.itemanimator;
 
-import android.animation.AnimatorSet;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -13,22 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RebountItemAnimator extends RecyclerView.ItemAnimator {
-
-    // Create a system to run the physics loop for a set of springs.
-    private SpringSystem springSystem = SpringSystem.create();
-    private SpringConfig springConfig = new SpringConfig(70, 10);
-
+public class ReboundItemAnimator extends RecyclerView.ItemAnimator {
     //hold the views to animate in runPendingAnimations
     private List<RecyclerView.ViewHolder> mViewHolders = new ArrayList<RecyclerView.ViewHolder>();
+
 
     @Override
     public void runPendingAnimations() {
         if (!mViewHolders.isEmpty()) {
-            int animationDuration = 300;
-            AnimatorSet animator;
-
             for (final RecyclerView.ViewHolder viewHolder : mViewHolders) {
+                SpringSystem springSystem = SpringSystem.create();
+                SpringConfig springConfig = new SpringConfig(70, 10);
+
                 final View target = viewHolder.itemView;
 
                 // Add a spring to the system.
@@ -58,6 +53,7 @@ public class RebountItemAnimator extends RecyclerView.ItemAnimator {
 
     @Override
     public boolean animateRemove(RecyclerView.ViewHolder viewHolder) {
+        viewHolder.itemView.animate().alpha(0).scaleX(0).scaleY(0).setDuration(300).start();
         return false;
     }
 

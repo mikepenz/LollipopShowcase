@@ -13,20 +13,19 @@ import java.util.List;
 
 public class CustomItemAnimator extends RecyclerView.ItemAnimator {
 
-    List<RecyclerView.ViewHolder> mViewHolders = new ArrayList<RecyclerView.ViewHolder>();
+    List<RecyclerView.ViewHolder> mPendingAdd = new ArrayList<RecyclerView.ViewHolder>();
+    List<RecyclerView.ViewHolder> mPendingRemove = new ArrayList<RecyclerView.ViewHolder>();
 
     @Override
     public void runPendingAnimations() {
-        if (!mViewHolders.isEmpty()) {
-            int animationDuration = 300;
-            AnimatorSet animator;
-            View target;
-            for (final RecyclerView.ViewHolder viewHolder : mViewHolders) {
-                target = viewHolder.itemView;
+        int animationDuration = 300;
+        if (!mPendingAdd.isEmpty()) {
+            for (final RecyclerView.ViewHolder viewHolder : mPendingAdd) {
+                View target = viewHolder.itemView;
                 target.setPivotX(target.getMeasuredWidth() / 2);
                 target.setPivotY(target.getMeasuredHeight() / 2);
 
-                animator = new AnimatorSet();
+                AnimatorSet animator = new AnimatorSet();
 
                 animator.playTogether(
                         ObjectAnimator.ofFloat(target, "translationX", -target.getMeasuredWidth(), 0.0f),
@@ -45,7 +44,7 @@ public class CustomItemAnimator extends RecyclerView.ItemAnimator {
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        mViewHolders.remove(viewHolder);
+                        mPendingAdd.remove(viewHolder);
                     }
 
                     @Override
@@ -61,17 +60,38 @@ public class CustomItemAnimator extends RecyclerView.ItemAnimator {
                 animator.start();
             }
         }
+        if (!mPendingRemove.isEmpty()) {
+            for (final RecyclerView.ViewHolder viewHolder : mPendingRemove) {
+                View target = viewHolder.itemView;
+                target.setPivotX(target.getMeasuredWidth() / 2);
+                target.setPivotY(target.getMeasuredHeight() / 2);
+
+                AnimatorSet animator = new AnimatorSet();
+
+                animator.playTogether(
+                        ObjectAnimator.ofFloat(target, "translationX", 0.0f, target.getMeasuredWidth()),
+                        ObjectAnimator.ofFloat(target, "alpha", target.getAlpha(), 0.0f)
+                );
+
+                animator.setTarget(target);
+                animator.setDuration(animationDuration);
+                animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                animator.setStartDelay((animationDuration * viewHolder.getPosition()) / 10);
+                animator.start();
+            }
+        }
     }
 
     @Override
     public boolean animateRemove(RecyclerView.ViewHolder viewHolder) {
+        mPendingRemove.add(viewHolder);
         return false;
     }
 
     @Override
     public boolean animateAdd(RecyclerView.ViewHolder viewHolder) {
         viewHolder.itemView.setAlpha(0.0f);
-        return mViewHolders.add(viewHolder);
+        return mPendingAdd.add(viewHolder);
     }
 
     @Override
@@ -94,7 +114,7 @@ public class CustomItemAnimator extends RecyclerView.ItemAnimator {
 
     @Override
     public boolean isRunning() {
-        return !mViewHolders.isEmpty();
+        return !mPendingAdd.isEmpty() || !mPendingRemove.isEmpty();
     }
 
 }

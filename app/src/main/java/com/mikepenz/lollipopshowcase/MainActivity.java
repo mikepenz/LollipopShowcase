@@ -26,7 +26,7 @@ import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.ui.LibsActivity;
 import com.mikepenz.lollipopshowcase.adapter.ApplicationAdapter;
 import com.mikepenz.lollipopshowcase.entity.AppInfo;
-import com.mikepenz.lollipopshowcase.itemanimator.RebountItemAnimator;
+import com.mikepenz.lollipopshowcase.itemanimator.CustomItemAnimator;
 import com.mikepenz.lollipopshowcase.util.UploadHelper;
 import com.mikpenz.iconics.IconicsDrawable;
 import com.mikpenz.iconics.typeface.FontAwesome;
@@ -116,11 +116,16 @@ public class MainActivity extends ActionBarActivity {
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setItemAnimator(new RebountItemAnimator());
+
+        mRecyclerView.setItemAnimator(new CustomItemAnimator());
+        //mRecyclerView.setItemAnimator(new ReboundItemAnimator());
+
         mAdapter = new ApplicationAdapter(new ArrayList<AppInfo>(), R.layout.row_application, MainActivity.this);
         mRecyclerView.setAdapter(mAdapter);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.theme_accent));
+        mSwipeRefreshLayout.setRefreshing(true);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -153,18 +158,18 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onPreExecute() {
-            mSwipeRefreshLayout.setRefreshing(true);
+            mAdapter.clearApplications();
 
             super.onPreExecute();
         }
 
         @Override
         protected Void doInBackground(Void... params) {
+            applicationList.clear();
+
             //Query the applications
             final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
             mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-            applicationList.clear();
 
             List<ResolveInfo> ril = getPackageManager().queryIntentActivities(mainIntent, 0);
             for (ResolveInfo ri : ril) {
@@ -182,8 +187,7 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            mAdapter.setApplications(applicationList);
-
+            mAdapter.addApplications(applicationList);
             mSwipeRefreshLayout.setRefreshing(false);
 
             super.onPostExecute(result);
