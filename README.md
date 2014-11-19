@@ -12,6 +12,7 @@ This includes features like:
 - RippleDrawables
 - Android Compat Theme
 - DrawerLayout
+- SwipeRefreshLayout
 
 #Preview
 ##Demo
