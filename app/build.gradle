@@ -5,22 +5,9 @@ try {
 } catch (ex) {
 }
 
-
-def appendVersionNameVersionCode(variant, defaultConfig) {
-    if (variant.zipAlign) {
-        def file = variant.outputFile
-        def fileName = file.name.replace(".apk", "-v" + defaultConfig.versionName + "-c" + defaultConfig.versionCode + ".apk")
-        variant.outputFile = new File(file.parent, fileName)
-    }
-
-    def file = variant.packageApplication.outputFile
-    def fileName = file.name.replace(".apk", "-v" + defaultConfig.versionName + "-c" + defaultConfig.versionCode + ".apk")
-    variant.packageApplication.outputFile = new File(file.parent, fileName)
-}
-
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.0.2"
+    buildToolsVersion "21.1.1"
     defaultConfig {
         applicationId 'com.mikepenz.lollipopshowcase'
         minSdkVersion 16
@@ -37,19 +24,25 @@ android {
                 signingConfig signingConfigs.debug
             } catch (ex) {
             }
-            runProguard false
+            minifyEnabled false
         }
         release {
             try {
                 signingConfig signingConfigs.release
             } catch (ex) {
             }
-            zipAlign true
-            runProguard false
+            zipAlignEnabled true
+            minifyEnabled false
         }
 
         applicationVariants.all { variant ->
-            appendVersionNameVersionCode(variant, defaultConfig)
+            variant.outputs.each { output ->
+                def outputFile = output.outputFile
+                if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                    def fileName = outputFile.name.replace(".apk", "-v" + defaultConfig.versionName + "-c" + defaultConfig.versionCode + ".apk")
+                    output.outputFile = new File(outputFile.parent, fileName)
+                }
+            }
         }
     }
     productFlavors {
@@ -58,15 +51,17 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:support-v4:21.0.0"
-    compile "com.android.support:appcompat-v7:21.0.0"
+    compile "com.android.support:support-v4:21.0.2"
+    compile "com.android.support:appcompat-v7:21.0.2"
     compile 'com.android.support:recyclerview-v7:21.0.0'
     compile 'com.android.support:cardview-v7:21.0.0'
 
-    compile 'com.nispok:snackbar:2.0.1'
-    
-    compile 'com.mikepenz.iconics:library:0.5.1@aar'
+    compile 'com.nispok:snackbar:2.1.0'
 
-    compile 'com.mikepenz.aboutlibraries:library:4.3.0@aar'
-    compile 'com.facebook.rebound:rebound:0.3.6'
+    compile 'com.mikepenz.iconics:library:0.5.1@aar'
+    compile('com.mikepenz.aboutlibraries:library:4.3.6@aar') {
+        transitive = true
+    }
+
+    compile 'com.facebook.rebound:rebound:0.3.7'
 }
