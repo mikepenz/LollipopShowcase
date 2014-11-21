@@ -9,7 +9,7 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
     defaultConfig {
-        applicationId 'com.mikepenz.lollipopshowcase'
+        applicationId 'com.mikepenz.lollipopshowcase.sample'
         minSdkVersion 16
         targetSdkVersion 21
         versionCode 220
@@ -59,9 +59,9 @@ dependencies {
     compile 'com.nispok:snackbar:2.1.0'
 
     compile 'com.mikepenz.iconics:library:0.5.1@aar'
-    compile('com.mikepenz.aboutlibraries:library:4.3.6@aar') {
+    compile('com.mikepenz.aboutlibraries:library:4.3.7@aar') {
         transitive = true
     }
 
-    compile 'com.facebook.rebound:rebound:0.3.7'
+    compile 'com.facebook.rebound:rebound:0.3.6'
 }
