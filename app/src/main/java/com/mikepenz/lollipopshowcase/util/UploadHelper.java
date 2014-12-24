@@ -110,7 +110,7 @@ public class UploadHelper {
     public boolean postData() {
 
         try {
-            Thread.sleep(150);
+            Thread.sleep(100);
         } catch (Exception ex) {
 
         }
