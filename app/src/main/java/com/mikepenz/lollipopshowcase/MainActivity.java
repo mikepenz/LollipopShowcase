@@ -42,6 +42,7 @@ public class MainActivity extends ActionBarActivity {
     private ImageButton fabButton;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
+    private static UploadHelper.UploadComponentInfoTask uploadComponentInfoTask = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,13 +135,25 @@ public class MainActivity extends ActionBarActivity {
         });
 
         new InitializeApplicationsTask().execute();
+
+        if (savedInstanceState != null) {
+            if (uploadComponentInfoTask != null) {
+                if (uploadComponentInfoTask.isRunning) {
+                    uploadComponentInfoTask.showProgress(this);
+                }
+            }
+        }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 
     View.OnClickListener fabClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            UploadHelper.getInstance(MainActivity.this, applicationList).uploadAll();
+            uploadComponentInfoTask = UploadHelper.getInstance(MainActivity.this, applicationList).uploadAll();
         }
     };
 
