@@ -18,5 +18,8 @@
     <dimen name="drawer_secondary">44dp</dimen>
     <dimen name="drawer_secondary_text">16sp</dimen>
     <dimen name="drawer_secondary_icon">16dp</dimen>
-    <dimen name="drawer_width">240dp</dimen>
+    <dimen name="drawer_width">304dp</dimen>
+
+    <!-- Toolbar Padding -->
+    <dimen name="tool_bar_top_padding">0dp</dimen>
 </resources>

@@ -13,10 +13,13 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:paddingTop="@dimen/tool_bar_top_padding"
             android:elevation="4dp"
             android:transitionName="actionBar"/>
+
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipe_container"
             android:layout_below="@id/toolbar"
@@ -53,6 +56,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:paddingTop="@dimen/tool_bar_top_padding"
         android:id="@+id/drawerList"
         android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"
