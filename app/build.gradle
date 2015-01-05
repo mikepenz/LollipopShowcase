@@ -52,12 +52,12 @@ android {
 dependencies {
     compile "com.android.support:support-v4:21.0.3"
     compile "com.android.support:appcompat-v7:21.0.3"
-    compile 'com.android.support:recyclerview-v7:21.0.0'
-    compile 'com.android.support:cardview-v7:21.0.0'
+    compile 'com.android.support:recyclerview-v7:21.0.3'
+    compile 'com.android.support:cardview-v7:21.0.3'
 
-    compile 'com.nispok:snackbar:2.7.1'
+    compile 'com.nispok:snackbar:2.7.3'
 
-    compile 'com.mikepenz.iconics:library:0.6.6@aar'
+    compile 'com.mikepenz.iconics:library:0.7.0@aar'
     compile('com.mikepenz.aboutlibraries:library:4.5.0@aar') {
         transitive = true
     }

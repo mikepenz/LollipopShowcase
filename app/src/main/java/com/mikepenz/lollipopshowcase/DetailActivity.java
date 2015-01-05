@@ -18,10 +18,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.lollipopshowcase.entity.AppInfo;
 import com.mikepenz.lollipopshowcase.util.UploadHelper;
-import com.mikpenz.iconics.IconicsDrawable;
-import com.mikpenz.iconics.typeface.FontAwesome;
 import com.nispok.snackbar.Snackbar;
 
 import java.util.Date;

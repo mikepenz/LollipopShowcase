@@ -23,13 +23,12 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import com.mikepenz.aboutlibraries.Libs;
-import com.mikepenz.aboutlibraries.ui.LibsActivity;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.lollipopshowcase.adapter.ApplicationAdapter;
 import com.mikepenz.lollipopshowcase.entity.AppInfo;
 import com.mikepenz.lollipopshowcase.itemanimator.CustomItemAnimator;
 import com.mikepenz.lollipopshowcase.util.UploadHelper;
-import com.mikpenz.iconics.IconicsDrawable;
-import com.mikpenz.iconics.typeface.FontAwesome;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -87,24 +86,13 @@ public class MainActivity extends ActionBarActivity {
         mDrawerList.findViewById(R.id.drawer_opensource).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Create an intent with context and the Activity class
-                Intent i = new Intent(getApplicationContext(), LibsActivity.class);
-                //Pass the fields of your application to the lib so it can find all external lib information
-                i.putExtra(Libs.BUNDLE_FIELDS, Libs.toStringArray(R.string.class.getFields()));
-
-                //Display the library version (OPTIONAL)
-                i.putExtra(Libs.BUNDLE_VERSION, false);
-                //Display the library license (OPTIONAL
-                i.putExtra(Libs.BUNDLE_LICENSE, true);
-
-                //Set a title (OPTIONAL)
-                i.putExtra(Libs.BUNDLE_TITLE, getString(R.string.drawer_opensource));
-
-                //Pass your theme (OPTIONAL)
-                i.putExtra(Libs.BUNDLE_THEME, R.style.AboutTheme);
-
-                //start the activity
-                startActivity(i);
+                new Libs.Builder()
+                        .withFields(R.string.class.getFields())
+                        .withVersionShown(true)
+                        .withLicenseShown(true)
+                        .withActivityTitle(getString(R.string.drawer_opensource))
+                        .withActivityTheme(R.style.AboutTheme)
+                        .start(MainActivity.this);
             }
         });
         ((ImageView) mDrawerList.findViewById(R.id.drawer_opensource_icon)).setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_github).colorRes(R.color.secondary).actionBarSize());
