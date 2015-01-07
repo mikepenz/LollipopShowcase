@@ -20,6 +20,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 
 import com.mikepenz.aboutlibraries.Libs;
@@ -38,8 +39,10 @@ public class MainActivity extends ActionBarActivity {
     private List<AppInfo> applicationList = new ArrayList<AppInfo>();
 
     private ApplicationAdapter mAdapter;
-    private ImageButton fabButton;
+    private ImageButton mFabButton;
+    private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private ProgressBar mProgressBar;
 
     private static UploadHelper.UploadComponentInfoTask uploadComponentInfoTask = null;
 
@@ -71,6 +74,9 @@ public class MainActivity extends ActionBarActivity {
         // Handle DrawerList
         LinearLayout mDrawerList = (LinearLayout) findViewById(R.id.drawerList);
 
+        // Handle ProgressBar
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         // Init DrawerElems NOTE Just don't do this in a live app :D
         final SharedPreferences pref = getSharedPreferences("com.mikepenz.applicationreader", 0);
         ((Switch) mDrawerList.findViewById(R.id.drawer_autoupload)).setChecked(pref.getBoolean("autouploadenabled", false));
@@ -98,14 +104,13 @@ public class MainActivity extends ActionBarActivity {
         ((ImageView) mDrawerList.findViewById(R.id.drawer_opensource_icon)).setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_github).colorRes(R.color.secondary).actionBarSize());
 
         // Fab Button
-        fabButton = (ImageButton) findViewById(R.id.fab_button);
-        fabButton.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_upload).color(Color.WHITE).actionBarSize());
-        fabButton.setOnClickListener(fabClickListener);
-        Utils.configureFab(fabButton);
+        mFabButton = (ImageButton) findViewById(R.id.fab_button);
+        mFabButton.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_upload).color(Color.WHITE).actionBarSize());
+        mFabButton.setOnClickListener(fabClickListener);
+        Utils.configureFab(mFabButton);
 
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.list);
+        mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         mRecyclerView.setItemAnimator(new CustomItemAnimator());
         //mRecyclerView.setItemAnimator(new ReboundItemAnimator());
 
@@ -131,6 +136,10 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         }
+
+        //show progress
+        mRecyclerView.setVisibility(View.GONE);
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -150,7 +159,7 @@ public class MainActivity extends ActionBarActivity {
         Intent i = new Intent(this, DetailActivity.class);
         i.putExtra("appInfo", appInfo.getComponentName());
 
-        ActivityOptionsCompat transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Pair.create((View) fabButton, "fab"), Pair.create(appIcon, "appIcon"));
+        ActivityOptionsCompat transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Pair.create((View) mFabButton, "fab"), Pair.create(appIcon, "appIcon"));
         startActivity(i, transitionActivityOptions.toBundle());
     }
 
@@ -160,7 +169,6 @@ public class MainActivity extends ActionBarActivity {
         @Override
         protected void onPreExecute() {
             mAdapter.clearApplications();
-
             super.onPreExecute();
         }
 
@@ -188,6 +196,11 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+            //handle visibility
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.GONE);
+
+            //set data for list
             mAdapter.addApplications(applicationList);
             mSwipeRefreshLayout.setRefreshing(false);
 

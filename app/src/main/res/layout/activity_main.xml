@@ -37,6 +37,14 @@
                 />
         </android.support.v4.widget.SwipeRefreshLayout>
 
+        <ProgressBar
+            android:layout_below="@id/toolbar"
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:padding="72dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
         <ImageButton
             android:id="@+id/fab_button"
             android:transitionName="fab"
