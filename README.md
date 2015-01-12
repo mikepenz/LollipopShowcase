@@ -16,7 +16,9 @@ This includes features like:
 
 #Preview
 ##Demo
-Try it out now. It's on Google Play ;) https://play.google.com/store/apps/details?id=com.mikepenz.lollipopshowcase.sample
+Try it out now. It's on Google Play
+
+https://play.google.com/store/apps/details?id=com.mikepenz.lollipopshowcase.sample
 
 ##Screenshots
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-LollipopShowcase/master/DEV/screenshots/screenshot_1_small.jpg)
@@ -38,7 +40,7 @@ Some stuff is just implemented to showcase its functionality and so they are not
 
 #License
 
-    Copyright 2014 Mike Penz
+    Copyright 2015 Mike Penz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
