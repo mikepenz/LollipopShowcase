@@ -3,7 +3,7 @@ package com.mikepenz.lollipopshowcase.util;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.mikepenz.lollipopshowcase.R;
 import com.mikepenz.lollipopshowcase.entity.AppInfo;
@@ -19,7 +19,7 @@ public class UploadHelper {
     private static UploadHelper instance = null;
 
 
-    private UploadHelper(ActionBarActivity act, List<AppInfo> applicationList) {
+    private UploadHelper(AppCompatActivity act, List<AppInfo> applicationList) {
         this.act = act;
 
         if (applicationList != null) {
@@ -29,16 +29,20 @@ public class UploadHelper {
         }
     }
 
-    private ActionBarActivity act;
+    private AppCompatActivity act;
     private List<AppInfo> applicationList = new ArrayList<AppInfo>();
 
-    public static UploadHelper getInstance(ActionBarActivity act, List<AppInfo> applicationList) {
+    public static UploadHelper getInstance(AppCompatActivity act, List<AppInfo> applicationList) {
         if (instance == null) {
             instance = new UploadHelper(act, applicationList);
         } else if (act != null) {
             instance.act = act;
         }
         return instance;
+    }
+
+    public void destroy() {
+        this.act = null;
     }
 
     public UploadComponentInfoTask upload(AppInfo appInfo) {
@@ -125,17 +129,14 @@ public class UploadHelper {
             }
             super.onProgressUpdate(values);
         }
-
     }
 
     public boolean postData() {
-
         try {
             Thread.sleep(100);
         } catch (Exception ex) {
 
         }
-
         return false;
     }
 }

@@ -6,12 +6,12 @@ try {
 }
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
     defaultConfig {
         applicationId 'com.mikepenz.lollipopshowcase.sample'
         minSdkVersion 16
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionCode 221
         versionName "2.2.1"
     }
@@ -50,15 +50,18 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:support-v4:21.0.3"
-    compile "com.android.support:appcompat-v7:21.0.3"
-    compile 'com.android.support:recyclerview-v7:21.0.3'
-    compile 'com.android.support:cardview-v7:21.0.3'
+    compile "com.android.support:support-v4:22.1.1"
+    compile "com.android.support:appcompat-v7:22.1.1"
+    compile 'com.android.support:recyclerview-v7:22.1.1'
+    compile 'com.android.support:cardview-v7:22.1.1'
 
     compile 'com.nispok:snackbar:2.7.3'
 
-    compile 'com.mikepenz.iconics:library:0.7.0@aar'
-    compile('com.mikepenz.aboutlibraries:library:4.5.0@aar') {
+    compile 'com.mikepenz.iconics:library:0.9.1@aar'
+    compile('com.mikepenz.aboutlibraries:library:4.7.1@aar') {
+        transitive = true
+    }
+    compile('com.mikepenz.materialdrawer:library:2.9.1@aar') {
         transitive = true
     }
 

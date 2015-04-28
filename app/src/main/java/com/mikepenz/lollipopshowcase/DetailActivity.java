@@ -9,7 +9,7 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -26,11 +26,10 @@ import com.nispok.snackbar.Snackbar;
 
 import java.util.Date;
 
-public class DetailActivity extends ActionBarActivity {
+public class DetailActivity extends AppCompatActivity {
 
     private static final int SCALE_DELAY = 30;
 
-    private Toolbar toolbar;
     private LinearLayout rowContainer;
 
     private AppInfo appInfo = null;
@@ -42,7 +41,7 @@ public class DetailActivity extends ActionBarActivity {
 
         //Utils.configureWindowEnterExitTransition(getWindow());
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

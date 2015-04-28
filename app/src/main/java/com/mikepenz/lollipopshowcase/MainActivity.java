@@ -8,20 +8,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Switch;
 
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.iconics.IconicsDrawable;
@@ -30,13 +26,23 @@ import com.mikepenz.lollipopshowcase.adapter.ApplicationAdapter;
 import com.mikepenz.lollipopshowcase.entity.AppInfo;
 import com.mikepenz.lollipopshowcase.itemanimator.CustomItemAnimator;
 import com.mikepenz.lollipopshowcase.util.UploadHelper;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SwitchDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.OnCheckedChangeListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
+    private static final int DRAWER_ITEM_SWITCH = 1;
+    private static final int DRAWER_ITEM_OPEN_SOURCE = 10;
+
     private List<AppInfo> applicationList = new ArrayList<AppInfo>();
+
+    private Drawer.Result drawer;
 
     private ApplicationAdapter mAdapter;
     private ImageButton mFabButton;
@@ -61,47 +67,47 @@ public class MainActivity extends ActionBarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Handle DrawerLayout
-        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        final SharedPreferences pref = getSharedPreferences("com.mikepenz.applicationreader", 0);
 
-        // Handle ActionBarDrawerToggle
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
-        actionBarDrawerToggle.syncState();
+        drawer = new Drawer(this)
+                .withToolbar(toolbar)
+                .addDrawerItems(
+                        new SwitchDrawerItem().withOnCheckedChangeListener(new OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(IDrawerItem drawerItem, CompoundButton compoundButton, boolean b) {
+                                SharedPreferences.Editor editor = pref.edit();
+                                editor.putBoolean("autouploadenabled", b);
+                                editor.apply();
+                            }
+                        }).withName(R.string.drawer_switch).withChecked(pref.getBoolean("autouploadenabled", false))
 
-        // Handle different Drawer States :D
-        mDrawerLayout.setDrawerListener(actionBarDrawerToggle);
-
-        // Handle DrawerList
-        LinearLayout mDrawerList = (LinearLayout) findViewById(R.id.drawerList);
+                ).addStickyDrawerItems(
+                        new SecondaryDrawerItem()
+                                .withName(R.string.drawer_opensource)
+                                .withIdentifier(DRAWER_ITEM_OPEN_SOURCE)
+                                .withIcon(FontAwesome.Icon.faw_github)
+                                .withCheckable(false)
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem drawerItem) {
+                        if (drawerItem.getIdentifier() == DRAWER_ITEM_OPEN_SOURCE) {
+                            new Libs.Builder()
+                                    .withFields(R.string.class.getFields())
+                                    .withVersionShown(true)
+                                    .withLicenseShown(true)
+                                    .withActivityTitle(getString(R.string.drawer_opensource))
+                                    .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+                                    .start(MainActivity.this);
+                        }
+                    }
+                })
+                .withSelectedItem(-1)
+                .withSavedInstance(savedInstanceState)
+                .build();
 
         // Handle ProgressBar
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-        // Init DrawerElems NOTE Just don't do this in a live app :D
-        final SharedPreferences pref = getSharedPreferences("com.mikepenz.applicationreader", 0);
-        ((Switch) mDrawerList.findViewById(R.id.drawer_autoupload)).setChecked(pref.getBoolean("autouploadenabled", false));
-        ((Switch) mDrawerList.findViewById(R.id.drawer_autoupload)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putBoolean("autouploadenabled", isChecked);
-                editor.apply();
-            }
-        });
-
-        mDrawerList.findViewById(R.id.drawer_opensource).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Libs.Builder()
-                        .withFields(R.string.class.getFields())
-                        .withVersionShown(true)
-                        .withLicenseShown(true)
-                        .withActivityTitle(getString(R.string.drawer_opensource))
-                        .withActivityTheme(R.style.AboutTheme)
-                        .start(MainActivity.this);
-            }
-        });
-        ((ImageView) mDrawerList.findViewById(R.id.drawer_opensource_icon)).setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_github).colorRes(R.color.secondary).actionBarSize());
 
         // Fab Button
         mFabButton = (ImageButton) findViewById(R.id.fab_button);
@@ -144,7 +150,16 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        if (drawer != null) {
+            outState = drawer.saveInstanceState(outState);
+        }
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        UploadHelper.getInstance(null, null).destroy();
+        super.onDestroy();
     }
 
     View.OnClickListener fabClickListener = new View.OnClickListener() {
