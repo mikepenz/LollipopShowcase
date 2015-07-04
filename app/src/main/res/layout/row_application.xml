@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    android:orientation="horizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_margin="5dp"
-                                    android:clickable="true"
-                                    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:orientation="horizontal">
 
 
     <TextView
         android:id="@+id/countryName"
-        android:gravity="center_vertical"
-        android:paddingStart="80dp"
-        android:paddingLeft="80dp"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:textSize="24sp"
-        android:textColor="@color/text"
-        android:clickable="false"
         android:background="@drawable/button_rect_list_normal"
-        />
+        android:clickable="false"
+        android:gravity="center_vertical"
+        android:paddingLeft="80dp"
+        android:paddingStart="80dp"
+        android:textColor="@color/text"
+        android:textSize="24sp" />
 
     <ImageView
-        android:transitionName="appIcon"
         android:id="@+id/countryImage"
         android:layout_width="72dp"
         android:layout_height="72dp"
+        android:clickable="false"
         android:padding="4dp"
         android:scaleType="centerCrop"
-        android:clickable="false"
-        />
+        android:transitionName="appIcon" />
 
 </android.support.v7.widget.CardView>

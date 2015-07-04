@@ -3,11 +3,11 @@ package com.mikepenz.lollipopshowcase.util;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mikepenz.lollipopshowcase.R;
 import com.mikepenz.lollipopshowcase.entity.AppInfo;
-import com.nispok.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +18,13 @@ import java.util.List;
 public class UploadHelper {
     private static UploadHelper instance = null;
 
-
     private UploadHelper(AppCompatActivity act, List<AppInfo> applicationList) {
         this.act = act;
 
         if (applicationList != null) {
             this.applicationList = applicationList;
         } else {
-            this.applicationList = new ArrayList<AppInfo>();
+            this.applicationList = new ArrayList<>();
         }
     }
 
@@ -70,7 +69,6 @@ public class UploadHelper {
             mProgressDialog.setCancelable(false);
             mProgressDialog.setMax(applicationList.size());
             mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-
             mProgressDialog.show();
         }
 
@@ -78,7 +76,7 @@ public class UploadHelper {
         protected void onPreExecute() {
             if (!Network.isAvailiable(act)) {
                 this.cancel(true);
-                Snackbar.with(act).text(act.getString(R.string.dialog_nointernet)).show(act);
+                Snackbar.make(act.findViewById(R.id.container), act.getString(R.string.dialog_nointernet), Snackbar.LENGTH_SHORT).show();
             } else {
                 showProgress(act);
             }
@@ -131,6 +129,11 @@ public class UploadHelper {
         }
     }
 
+    /**
+     * we do not really want to upload something here. So there's just a placeholder method for this
+     *
+     * @return
+     */
     public boolean postData() {
         try {
             Thread.sleep(100);
