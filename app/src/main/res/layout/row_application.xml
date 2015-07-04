@@ -15,7 +15,6 @@
         android:clickable="false"
         android:gravity="center_vertical"
         android:paddingLeft="80dp"
-        android:paddingStart="80dp"
         android:textColor="@color/text"
         android:textSize="24sp" />
 
