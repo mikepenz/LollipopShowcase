@@ -6,9 +6,11 @@ This includes features like:
 - Toolbar
 - RecyclerView
 - CardView
+- Snackbar
+- Floating Action Button (FAB)
+- CoordinatorLayout
 - ActionBarDrawerToggle
 - Animations (Including animations for the RecyclerView)
-- Floating Action Button (FAB)
 - RippleDrawables
 - Android Compat Theme
 - DrawerLayout
