@@ -1,6 +1,7 @@
 package com.mikepenz.lollipopshowcase.itemanimator;
 
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.view.View;
 
 import com.facebook.rebound.SimpleSpringListener;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ReboundItemAnimator extends RecyclerView.ItemAnimator {
+public class ReboundItemAnimator extends SimpleItemAnimator {
     //hold the views to animate in runPendingAnimations
     private List<RecyclerView.ViewHolder> mViewHolders = new ArrayList<RecyclerView.ViewHolder>();
 
