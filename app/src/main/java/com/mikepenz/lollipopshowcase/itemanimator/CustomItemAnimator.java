@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CustomItemAnimator extends RecyclerView.ItemAnimator {
+public class CustomItemAnimator extends SimpleItemAnimator {
 
     List<RecyclerView.ViewHolder> mPendingAdd = new ArrayList<RecyclerView.ViewHolder>();
     List<RecyclerView.ViewHolder> mPendingRemove = new ArrayList<RecyclerView.ViewHolder>();
