@@ -37,8 +37,9 @@ Some stuff is just implemented to showcase its functionality and so they are not
 
 #Developed By
 
-* Mike Penz - http://mikepenz.com - <penz@tundem.com>
-
+* Mike Penz 
+ * [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
+ * [paypal.me/mikepenz](http://paypal.me/mikepenz)
 
 #License
 
