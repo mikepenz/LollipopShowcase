@@ -76,7 +76,7 @@ public class UploadHelper {
         protected void onPreExecute() {
             if (!Network.isAvailiable(act)) {
                 this.cancel(true);
-                Snackbar.make(act.findViewById(R.id.container), act.getString(R.string.dialog_nointernet), Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(act.findViewById(android.R.id.content), act.getString(R.string.dialog_nointernet), Snackbar.LENGTH_SHORT).show();
             } else {
                 showProgress(act);
             }
