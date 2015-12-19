@@ -7,13 +7,13 @@ try {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId 'com.mikepenz.lollipopshowcase.sample'
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 240
-        versionName "2.4.0"
+        versionCode 241
+        versionName "2.4.1"
     }
 
     buildTypes {
