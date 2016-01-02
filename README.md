@@ -43,7 +43,7 @@ Some stuff is just implemented to showcase its functionality and so they are not
 
 #License
 
-    Copyright 2015 Mike Penz
+    Copyright 2016 Mike Penz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
